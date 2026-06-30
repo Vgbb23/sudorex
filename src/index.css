@@ -1,0 +1,211 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Rajdhani", sans-serif;
+  --color-deep: #000000;
+  --color-midnight: #0a0a0a;
+  --color-sudorex: #48A9A6;
+  --color-sudorex-light: #6BC4C1;
+  --color-sudorex-dark: #3A8785;
+  --color-silver: #94a3b8;
+  --color-holo: #c0d8f0;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-black text-white font-sans antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    @apply tracking-tight;
+  }
+}
+
+/* Backgrounds */
+.bg-mesh {
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(72, 169, 166, 0.28), transparent),
+    radial-gradient(ellipse 60% 40% at 100% 50%, rgba(107, 196, 193, 0.1), transparent),
+    radial-gradient(ellipse 50% 30% at 0% 80%, rgba(58, 135, 133, 0.12), transparent),
+    linear-gradient(180deg, #000000 0%, #0a0a0a 50%, #000000 100%);
+}
+
+.bg-section-dark {
+  background: linear-gradient(180deg, #000000 0%, #0a0a0a 100%);
+}
+
+.bg-metallic {
+  background: linear-gradient(135deg, #1a1a1a 0%, #48A9A6 40%, #1a1a1a 100%);
+}
+
+/* Buttons */
+.btn-cta {
+  @apply relative inline-flex items-center justify-center gap-2 font-bold uppercase tracking-wider text-sm md:text-base px-8 py-4 rounded-xl text-white overflow-hidden transition-transform active:scale-[0.98];
+  background: linear-gradient(135deg, #3A8785 0%, #48A9A6 50%, #6BC4C1 100%);
+  box-shadow: 0 0 30px rgba(72, 169, 166, 0.45), 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.btn-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 40%, rgba(255, 255, 255, 0.15) 50%, transparent 60%);
+  transform: translateX(-100%);
+  animation: shimmer 3s infinite;
+}
+
+.btn-cta-pulse {
+  animation: cta-pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% { transform: translateX(-100%); }
+  50% { transform: translateX(100%); }
+}
+
+@keyframes cta-pulse {
+  0%, 100% { box-shadow: 0 0 30px rgba(72, 169, 166, 0.45), 0 4px 20px rgba(0, 0, 0, 0.4); }
+  50% { box-shadow: 0 0 50px rgba(107, 196, 193, 0.55), 0 4px 25px rgba(0, 0, 0, 0.4); }
+}
+
+.btn-secondary-cta {
+  @apply inline-flex items-center justify-center gap-2 font-bold uppercase tracking-wider text-sm px-6 py-3 rounded-xl border border-white/20 text-white/90 hover:bg-white/5 transition-all;
+}
+
+/* Cards */
+.card-premium {
+  @apply rounded-2xl border border-white/10 backdrop-blur-sm transition-all duration-300;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%);
+}
+
+.card-premium:hover {
+  border-color: rgba(72, 169, 166, 0.35);
+  box-shadow: 0 0 40px rgba(72, 169, 166, 0.15);
+}
+
+/* Glow */
+.glow-accent {
+  box-shadow: 0 0 60px rgba(72, 169, 166, 0.3);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #ffffff 0%, #a8e0de 50%, #48A9A6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-silver {
+  background: linear-gradient(135deg, #e2e8f0 0%, #94a3b8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Nav */
+.glass-nav {
+  @apply bg-black/90 backdrop-blur-xl border-b border-white/10;
+}
+
+/* Particles */
+.particles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: rgba(107, 196, 193, 0.6);
+  border-radius: 50%;
+  animation: float-particle 8s ease-in-out infinite;
+}
+
+@keyframes float-particle {
+  0%, 100% { transform: translateY(0) translateX(0); opacity: 0.3; }
+  50% { transform: translateY(-30px) translateX(10px); opacity: 0.8; }
+}
+
+/* Product float */
+.product-float {
+  animation: product-float 5s ease-in-out infinite;
+  filter: drop-shadow(0 25px 50px rgba(72, 169, 166, 0.4));
+}
+
+@keyframes product-float {
+  0%, 100% { transform: translateY(0) rotateY(-5deg); }
+  50% { transform: translateY(-16px) rotateY(5deg); }
+}
+
+/* Marquee */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+}
+
+/* Sticky CTA */
+.sticky-cta {
+  @apply fixed bottom-0 left-0 right-0 z-50 p-3 md:hidden;
+  background: linear-gradient(180deg, transparent 0%, #000000 30%);
+  padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+}
+
+/* Checkout overrides (light theme) */
+.checkout-theme {
+  @apply bg-slate-50 text-slate-900;
+}
+
+.btn-primary {
+  @apply relative inline-flex items-center justify-center gap-2 w-full py-4 rounded-xl font-bold uppercase tracking-wider text-white transition-all disabled:opacity-60;
+  background: linear-gradient(135deg, #3A8785 0%, #48A9A6 100%);
+  box-shadow: 0 4px 20px rgba(72, 169, 166, 0.35);
+}
+
+.checkout-theme .btn-checkout {
+  @apply relative inline-flex items-center justify-center gap-2 w-full py-4 rounded-xl font-bold uppercase tracking-wider text-white transition-all disabled:opacity-60;
+  background: linear-gradient(135deg, #3A8785 0%, #48A9A6 100%);
+  box-shadow: 0 4px 20px rgba(72, 169, 166, 0.35);
+}
+
+.checkout-theme .accent-focus:focus {
+  @apply border-[#48A9A6] outline-none;
+}
+
+/* FAQ accordion */
+.faq-answer {
+  animation: faq-open 0.3s ease-out;
+}
+
+@keyframes faq-open {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Timeline */
+.timeline-line {
+  background: linear-gradient(90deg, transparent, #48A9A6, transparent);
+}
+
+.logo-white {
+  filter: brightness(0) invert(1);
+}
+
+/* Selection */
+::selection {
+  background: rgba(72, 169, 166, 0.5);
+  color: white;
+}
